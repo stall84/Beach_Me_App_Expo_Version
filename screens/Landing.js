@@ -1,7 +1,7 @@
 <script src="http://localhost:8097"></script>;
 import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import Geolocation from "@react-native-community/geolocation";
+import * as Location from "expo-location";
 import axios from "axios";
 
 const Landing = ({ navigation }) => {
@@ -11,16 +11,15 @@ const Landing = ({ navigation }) => {
   const [dbBeaches, setDbBeaches] = useState({ searchBeaches: "" });
   // getCoords hook will query the app's built-in geolocator, and then assign those coordinates to current state
   // pass in empty array for hook dependencies so that function only runs once instead of every re-render
-  const getCoords = useCallback(() => {
-    Geolocation.getCurrentPosition((position) => {
-      console.log("Geolocation: ", position);
-      setCoords({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
-      setIsLoading(false);
+  const getCoords = useCallback(async () => {
+    let location = await Location.getCurrentPositionAsync({});
+    console.log("Geolocation: ", location);
+    setCoords({
+      lat: location.coords.latitude,
+      lng: location.coords.longitude,
     });
-  }, []);
+    setIsLoading(false);
+  });
   const callBeachDB = useCallback(() => {
     console.log("Calling Backend for Beaches..");
     axios
