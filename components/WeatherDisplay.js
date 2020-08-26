@@ -168,6 +168,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#87CEEB",
   },
   titleText: {
+    fontWeight: "bold",
     fontSize: 20,
   },
   wxImage: {

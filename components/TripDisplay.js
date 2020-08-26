@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   ListItem: {
     color: "#db4735",
     fontSize: 21,
-    fontWeight: "200",
+    fontWeight: "bold",
     textAlign: "center",
   },
   TimeText: {
     color: "black",
     fontSize: 21,
-    fontWeight: "200",
+    fontWeight: "bold",
   },
 });
 
