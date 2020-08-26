@@ -24,9 +24,9 @@ const Landing = ({ navigation }) => {
     });
     setIsLoading(false);
   });
-  const callBeachDB = useCallback(() => {
+  const callBeachDB = useCallback(async () => {
     //console.log("Calling Backend for Beaches..");
-    axios
+    await axios
       .post("https://mes-personal-site.herokuapp.com/api/v1/beaches", {
         lat: coords.lat,
         lng: coords.lng,

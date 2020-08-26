@@ -20,8 +20,8 @@ const Display = ({ route }) => {
   const { Lat, Lng } = route.params.userCoords;
   const searchBeaches = route.params.searchBeaches;
 
-  const callServerBeaches = useCallback(() => {
-    axios
+  const callServerBeaches = useCallback(async () => {
+    await axios
       .post("https://mes-personal-site.herokuapp.com/api/v1/get-trips", {
         // formatting our request body with key 'reduxlat/lng'. This is merely because the server controller is set up
         // to receive from that key-name, as on our web-app project we used redux.
@@ -44,8 +44,8 @@ const Display = ({ route }) => {
       });
   }, [Lat, Lng, searchBeaches]);
 
-  const callServerWeather = useCallback(() => {
-    axios
+  const callServerWeather = useCallback(async () => {
+    await axios
       .post("https://mes-personal-site.herokuapp.com/api/v1/get-weather", {
         fiveBeaches: closestBeaches.closestBeaches,
       })
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   },
   textItem: {
     textAlign: "center",
+    fontWeight: "bold",
     fontSize: 20,
   },
   ListItem: {
