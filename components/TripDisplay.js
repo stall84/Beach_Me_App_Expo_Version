@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#87CEEB",
   },
   ListItem: {
-    fontFamily: "Cursive",
     color: "#db4735",
     fontSize: 21,
     fontWeight: "200",

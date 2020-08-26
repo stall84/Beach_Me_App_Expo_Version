@@ -11,9 +11,13 @@ const Landing = ({ navigation }) => {
   const [dbBeaches, setDbBeaches] = useState({ searchBeaches: "" });
   // getCoords hook will query the app's built-in geolocator, and then assign those coordinates to current state
   // pass in empty array for hook dependencies so that function only runs once instead of every re-render
+
   const getCoords = useCallback(async () => {
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+    }
     let location = await Location.getCurrentPositionAsync({});
-    console.log("Geolocation: ", location);
     setCoords({
       lat: location.coords.latitude,
       lng: location.coords.longitude,
@@ -21,7 +25,7 @@ const Landing = ({ navigation }) => {
     setIsLoading(false);
   });
   const callBeachDB = useCallback(() => {
-    console.log("Calling Backend for Beaches..");
+    //console.log("Calling Backend for Beaches..");
     axios
       .post("https://mes-personal-site.herokuapp.com/api/v1/beaches", {
         lat: coords.lat,
@@ -37,9 +41,10 @@ const Landing = ({ navigation }) => {
 
   // useEffect effectively works as a componentDidMount class method in this case calling our
   // getCoords callback function on app-load/initial render. getCoords is also passed in dependencies array.
+
   useEffect(() => {
     getCoords();
-  }, [getCoords]);
+  }, []);
   useEffect(() => {
     if (!isLoading) {
       callBeachDB();
@@ -88,7 +93,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 52,
-    fontFamily: "Cursive",
     fontWeight: "bold",
     textAlign: "center",
   },

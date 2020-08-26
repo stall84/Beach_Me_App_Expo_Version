@@ -30,7 +30,7 @@ const Display = ({ route }) => {
         searchBeaches: searchBeaches,
       })
       .then((response) => {
-        console.log("Response after Google Query: ", response);
+        //console.log("Response after Google Query: ", response);
         setClosestBeaches({
           closestBeaches: response.data.data,
         });
@@ -50,7 +50,7 @@ const Display = ({ route }) => {
         fiveBeaches: closestBeaches.closestBeaches,
       })
       .then((response) => {
-        console.log("Weather Response: ", response);
+        //console.log("Weather Response: ", response);
         setForecasts({
           forecast1: response.data.data[0],
           forecast2: response.data.data[1],
@@ -98,7 +98,6 @@ const styles = StyleSheet.create({
   textItem: {
     textAlign: "center",
     fontSize: 20,
-    fontFamily: "Cursive",
   },
   ListItem: {
     color: "black",
