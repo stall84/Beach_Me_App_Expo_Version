@@ -168,7 +168,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#87CEEB",
   },
   titleText: {
-    fontFamily: "Cursive",
     fontSize: 20,
   },
   wxImage: {
